@@ -1,6 +1,10 @@
 import axios from 'axios';
 import { AxiosError } from 'axios';
 
+
+console.log("Using API base URL:", process.env.REACT_APP_API_URL);
+
+
 export interface Note {
     _id: string;
     title: string;
