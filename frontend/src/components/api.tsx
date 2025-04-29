@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { AxiosError } from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 export interface Note {
     _id: string;

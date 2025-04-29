@@ -4,7 +4,6 @@ import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import LogoImage from "./assets/Frame.svg";
-import GoogleIcon from "./assets/GoogleIcon.svg";
 
 const SignupForm: React.FC = () => {
   const navigate = useNavigate();

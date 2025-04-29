@@ -1,15 +1,11 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Input, Button, message, Tag } from 'antd';
 import {
-  BoldOutlined,
-  ItalicOutlined,
-  UnderlineOutlined,
   CalendarOutlined,
   TagOutlined,
   SaveOutlined,
   DeleteOutlined,
   FilePdfOutlined,
-  PictureOutlined,
   PlusOutlined,
 } from '@ant-design/icons';
 import '../styles/NoteEditor.css';
@@ -59,18 +55,7 @@ const formats = [
 ];
 
 /* ---------- local types ---------- */
-interface Note {
-  _id: string;
-  title: string;
-  content: string;
-  created_at: string;
-  tags?: string[];
-  ai_tag?: {
-    main_subject?: string;
-    overarching_scheme?: string;
-    sub_topic?: string;
-  };
-}
+
 
 const NoteEditor: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -86,11 +71,11 @@ const NoteEditor: React.FC = () => {
 
   const [loading, setLoading] = useState(true);
   const [isExporting, setIsExporting] = useState(false);
-  const [uploadProgress, setUploadProgress] = useState(0);
+  const [ setUploadProgress] = useState(0);
   const [date] = useState(() => new Date().toLocaleDateString());
   const [inputVisible, setInputVisible] = useState(false);
   const [inputValue, setInputValue] = useState('');
-  const [isUploading, setIsUploading] = useState(false);
+  const [ setIsUploading] = useState(false);
   
   const inputRef = useRef<Input | null>(null);
   const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -294,7 +279,7 @@ const NoteEditor: React.FC = () => {
 
   if (loading || !note) return <div>Loading…</div>;
   
-  const createdDate = new Date(note.created_at).toLocaleDateString();
+
 
   return (
     <div className="note-editor-container">
@@ -341,7 +326,7 @@ const NoteEditor: React.FC = () => {
             <div className="meta-label">Tags</div>
             <div className="meta-value tag-container">
               {note.tags && note.tags.length > 0 ? (
-                note.tags.map((tag, index) => (
+                note.tags.map((tag) => (
                   <Tag
                     className="edit-tag"
                     key={tag}

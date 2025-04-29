@@ -3,14 +3,13 @@ import { LockOutlined, MailOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input, message } from 'antd';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { setAuthToken } from '../utils/authorisation';
 import LogoImage from './assets/Frame.svg';
 import GoogleIcon from './assets/GoogleIcon.svg'; // Google icon SVG (unused right now)
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState('');
-  const [rememberMe, setRememberMe] = useState(false);
+  const [rememberMe] = useState(false);
 
   const onFinish = async (values: { email: string; password: string }) => {
     try {
