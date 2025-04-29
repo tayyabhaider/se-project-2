@@ -72,11 +72,9 @@ const NoteEditor: React.FC = () => {
 
   const [loading, setLoading] = useState(true);
   const [isExporting, setIsExporting] = useState(false);
-  const [ uploadProgress, setUploadProgress] = useState(0);
   const [date] = useState(() => new Date().toLocaleDateString());
   const [inputVisible, setInputVisible] = useState(false);
   const [inputValue, setInputValue] = useState('');
-  const [ isUploading, setIsUploading] = useState(false);
   
   const inputRef = useRef<InputRef>(null);
   const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -206,17 +204,9 @@ const NoteEditor: React.FC = () => {
     formData.append('note_id', id);
   
     try {
-      setIsUploading(true);
-      setUploadProgress(0);
       const response = await mediaApi.post('/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-        },
-        onUploadProgress: (progressEvent) => {
-          if (progressEvent.total) {
-            const progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-            setUploadProgress(progress);
-          }
         },
       });
   
@@ -243,10 +233,7 @@ const NoteEditor: React.FC = () => {
     } catch (err) {
       console.error(err);
       message.error('Image upload failed.');
-    } finally {
-      setIsUploading(false);
-      setUploadProgress(0);
-    }
+    } 
   };
 
   // Tag handling functions
