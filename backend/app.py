@@ -16,7 +16,6 @@ app.config['SECRET_KEY'] = SECRET_KEY
 
 
 CORS(app, resources={r"/*": {"origins": [
-    "http://localhost:5173",
     "https://se-project-2.vercel.app"
 ]}}, supports_credentials=True)
 
