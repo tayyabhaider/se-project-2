@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Input, Button, message, Tag } from 'antd';
+import type { InputRef } from 'antd';
 import {
   CalendarOutlined,
   TagOutlined,
@@ -71,13 +72,13 @@ const NoteEditor: React.FC = () => {
 
   const [loading, setLoading] = useState(true);
   const [isExporting, setIsExporting] = useState(false);
-  const [ setUploadProgress] = useState(0);
+  const [ uploadProgress, setUploadProgress] = useState(0);
   const [date] = useState(() => new Date().toLocaleDateString());
   const [inputVisible, setInputVisible] = useState(false);
   const [inputValue, setInputValue] = useState('');
-  const [ setIsUploading] = useState(false);
+  const [ isUploading, setIsUploading] = useState(false);
   
-  const inputRef = useRef<Input | null>(null);
+  const inputRef = useRef<InputRef>(null);
   const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const isSavingRef = useRef(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
