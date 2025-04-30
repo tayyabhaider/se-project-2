@@ -1,11 +1,10 @@
 from flask import make_response
-# import weasyprint
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from models.notes import create_note, get_notes_by_user, get_note_by_id, update_note_content, delete_note, get_pdf_note, get_pdf_summary, get_quiz,retrieve_tags, get_markdown_note, text_to_speech, get_saved_summary, SelectAndEnhance, autotag_note
 from bson.objectid import ObjectId
 from datetime import datetime
-# import pdfkit
+
 notes_routes = Blueprint("notes_routes", __name__)
 
 @notes_routes.route("/notes", methods=["GET"])
@@ -58,7 +57,7 @@ def create_note_route():
 
 @notes_routes.route("/notes/<note_id>", methods=["PUT"])
 @jwt_required()
-def update_note_route(note_id):  # Renamed to avoid conflict
+def update_note_route(note_id):  
     data = request.json
     user_id = get_jwt_identity()
     
@@ -74,7 +73,6 @@ def update_note_route(note_id):  # Renamed to avoid conflict
 def delete_note_route(note_id):
     user_id = get_jwt_identity()
     
-    # Verify note belongs to user
     note = get_note_by_id(note_id)
     if not note or note['user_id'] != user_id:
         return jsonify({"msg": "Note not found"}), 404
@@ -87,14 +85,12 @@ def delete_note_route(note_id):
 
 @notes_routes.route("/notes/<note_id>/pdf", methods=["GET"])
 def get_pdf_note_route(note_id):
-    # Call the get_pdf_note function, passing the note_id
-    return get_pdf_note(note_id)  # The note_id is used to generate the PDF
+    return get_pdf_note(note_id)  
 
 
 @notes_routes.route("/notes/<note_id>/markdown", methods=["GET"])
 def get_markdown_note_route(note_id):
-    # Call the get_pdf_note function, passing the note_id
-    return get_markdown_note(note_id)  # The note_id is used to generate the PDF
+    return get_markdown_note(note_id)  
 
 
 @notes_routes.route("/notes/<note_id>/summary", methods=["GET"])
@@ -108,7 +104,6 @@ def fetch_summary(note_id):
 
 @notes_routes.route("/notes/<note_id>/quiz", methods=["GET"])
 def handle_quizit(note_id):
-   print("in quiz it controller")
    return get_quiz(note_id)
 
 @notes_routes.route("/notes/<note_id>/tts", methods=["GET"])
@@ -123,7 +118,6 @@ def Autotagcontroller(note_id):
 
 @notes_routes.route("/notes/<note_id>/gettags", methods=["GET"])
 def GetAutotagcontroller(note_id):
-   print("uuuuuuuuuuuuuuuuuuuuuuuuuuuu")
    return retrieve_tags(note_id)
 
 from flask import request

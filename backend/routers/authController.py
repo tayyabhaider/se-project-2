@@ -12,15 +12,9 @@ import logging
 
 auth_routes = Blueprint("auth_routes", __name__)
 
-# Configuration variables
-# SECRET_KEY = os.getenv("SECRET_KEY", "your_default_secret")  # Should be set in .env
-# ALGORITHM = "HS256"  # This is used by JWT functions if needed elsewhere
 SESSION_DURATION = 3600  # 1 hour in seconds
 SESSION_COOKIE_NAME = "session_id"
 
-# def generate_csrf_token():
-#     import secrets
-#     return secrets.token_hex(16)
 
 @auth_routes.route("/signup", methods=["POST"])
 def signup():

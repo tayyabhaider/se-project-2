@@ -141,16 +141,7 @@ const SignupForm: React.FC = () => {
           Login
         </Button>
 
-        {/* <div className="divider-with-text">
-          <div className="divider" />
-          <span className="divider-text">or continue with</span>
-          <div className="divider" />
-        </div>
-
-        <Button className="google-btn">
-          <img src={GoogleIcon} alt="Google icon" className="google-icon" />
-          <span>Google</span>
-        </Button> */}
+        
       </Form>
 
       <div className="footer-text">
