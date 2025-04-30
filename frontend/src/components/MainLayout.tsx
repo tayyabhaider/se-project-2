@@ -114,10 +114,7 @@ const MainLayout: React.FC = () => {
     }
   };
 
-  const handleTrashClick = () => {
-    fetchTrashedNotes();
-    setIsTrashModalVisible(true);
-  };
+
 
   const handleRestoreNote = async (noteId: string) => {
     try {
