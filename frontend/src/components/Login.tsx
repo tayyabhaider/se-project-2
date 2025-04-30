@@ -16,11 +16,10 @@ const Login: React.FC = () => {
       const response = await axios.post('http://127.0.0.1:5000/auth/login', values, {
         withCredentials: true,
       });
-      
+
       if (rememberMe) {
-        document.cookie = `session_id=${response.data.access_token}; path=/; max-age=${
-          30 * 24 * 60 * 60
-        }`;
+        document.cookie = `session_id=${response.data.access_token}; path=/; max-age=${30 * 24 * 60 * 60
+          }`;
       }
 
       localStorage.setItem('token', response.data.access_token);
@@ -81,12 +80,9 @@ const Login: React.FC = () => {
           />
         </Form.Item>
 
-        <div className="remember-forgot">
-          <div className="remember-me">
-            <Checkbox />
-            <span>Remember me</span>
-          </div>
-          <a className="forgot-password">Forgot Password?</a>
+        <div className="remember-me">
+          <Checkbox />
+          <span>Remember me</span>
         </div>
 
         {loginError && (

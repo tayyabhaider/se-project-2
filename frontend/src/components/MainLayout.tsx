@@ -502,13 +502,7 @@ const MainLayout: React.FC = () => {
 
           <div className="more-section">More</div>
           <div className="note-list-footer">
-            <div
-              className="note-item"
-              onClick={handleTrashClick}
-            >
-              <DeleteOutlined className="note-icon" />
-              <span>Trash</span>
-            </div>
+      
             <div
               className="note-item"
               onClick={() => setIsSettingsVisible(true)}
