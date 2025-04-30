@@ -13,10 +13,8 @@ const Login: React.FC = () => {
 
   const onFinish = async (values: { email: string; password: string }) => {
     try {
-      // const response = await axios.post('http://127.0.0.1:5000/auth/login', values, {
-      //   withCredentials: true,
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, values, {
-       withCredentials: true,
+      const response = await axios.post('http://127.0.0.1:5000/auth/login', values, {
+        withCredentials: true,
       });
       
       if (rememberMe) {
