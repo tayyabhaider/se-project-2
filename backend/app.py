@@ -16,7 +16,7 @@ app.config['SECRET_KEY'] = SECRET_KEY
 
 
 CORS(app, resources={r"/*": {"origins": [
-    "https://se-project-2.vercel.app",
+    "https://se-project-2-fn7s.vercel.app",
 ]}}, supports_credentials=True)
 
 jwt = JWTManager(app)
