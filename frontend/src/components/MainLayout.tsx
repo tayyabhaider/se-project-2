@@ -50,7 +50,7 @@ const MainLayout: React.FC = () => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(true);
   const [trashedNotes, setTrashedNotes] = useState<TrashedNote[]>([]);
-  const [loadingTrash, setLoadingTrash] = useState(false);
+  const [loadingTrash] = useState(false);
   const [notes, setNotes] = useState<Note[]>([]);
   const [filteredNotes, setFilteredNotes] = useState<Note[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -102,17 +102,7 @@ const MainLayout: React.FC = () => {
     }
   };
 
-  const fetchTrashedNotes = async () => {
-    setLoadingTrash(true);
-    try {
-      const { data } = await authedApi.get('/notes/trash');
-      setTrashedNotes(data);
-    } catch (e) {
-      handleApiError(e, 'Failed to load trashed notes');
-    } finally {
-      setLoadingTrash(false);
-    }
-  };
+  
 
 
 
