@@ -171,7 +171,8 @@ const MainLayout: React.FC = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post('http://127.0.0.1:5000/auth/logout', {}, { withCredentials: true });
+      // await axios.post('http://127.0.0.1:5000/auth/logout', {}, { withCredentials: true });
+      await axios.post(`${process.env.REACT_APP_API_URL}/auth/logout`, {}, { withCredentials: true });
       localStorage.removeItem('token');
       navigate('/');
     } catch (e) {

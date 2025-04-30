@@ -10,7 +10,8 @@ const SignupForm: React.FC = () => {
 
   const onFinish = async (values: any) => {
     try {
-      const response = await axios.post('http://127.0.0.1:5000/auth/signup', values);
+      // const response = await axios.post('http://127.0.0.1:5000/auth/signup', values);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/signup`, values);
       console.log('Signup success:', response.data);
       alert('Signup successful! Please login.');
       navigate("/Dashboard");
