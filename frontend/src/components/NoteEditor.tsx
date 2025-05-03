@@ -161,11 +161,12 @@ const NoteEditor: React.FC = () => {
       message.error('Failed to delete note');
     }
   };
+  const API_BASE = import.meta.env.VITE_API_URL;
 
   const handleExportPdf = async () => {
     setIsExporting(true);
     try {
-      const res = await fetch(`http://localhost:5000/api/notes/${id}/pdf`, {
+      const res = await fetch(`${API_BASE}/api/notes/${id}/pdf`, {
         credentials: 'include',
       });
       if (!res.ok) throw new Error();

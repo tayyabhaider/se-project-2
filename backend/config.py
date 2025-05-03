@@ -12,7 +12,7 @@ MONGO_URI = os.getenv("MONGO_URI")
 REDIS_HOST = os.getenv("REDIS_HOST")
 REDIS_PORT = int(os.getenv("REDIS_PORT", 6379))  # Default to 6379 if not set
 FLASK_ENV = os.getenv("FLASK_ENV", "development")
-RENDER_URL = os.getenv("RENDER_URL")
+VITE_API_URL = os.getenv("VITE_API_URL")
 
 
 

@@ -13,7 +13,7 @@ const Login: React.FC = () => {
 
   const onFinish = async (values: { email: string; password: string }) => {
     try {
-      const response = await axios.post('http://127.0.0.1:5000/auth/login', values, {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, values, {
         withCredentials: true,
       });
 

@@ -155,10 +155,11 @@ const MainLayout: React.FC = () => {
       handleApiError(e, 'Failed to create note');
     }
   };
+  const API_BASE = import.meta.env.VITE_API_URL;
 
   const handleLogout = async () => {
     try {
-      await axios.post('http://127.0.0.1:5000/auth/logout', {}, { withCredentials: true });
+      await axios.post(`${API_BASE}/auth/logout`, {}, { withCredentials: true });
       localStorage.removeItem('token');
       navigate('/');
     } catch (e) {

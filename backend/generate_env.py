@@ -13,6 +13,7 @@ def create_env_file(env_path=".env"):
     redis_host = "localhost"
     redis_port = "6379"
     flask_env = "development"
+    VITE_API_URL = "https://se-project-2-kl4u.onrender.com"
     
     env_contents = (
         f"SECRET_KEY={secret_key}\n"
@@ -20,6 +21,7 @@ def create_env_file(env_path=".env"):
         f"REDIS_HOST={redis_host}\n"
         f"REDIS_PORT={redis_port}\n"
         f"FLASK_ENV={flask_env}\n"
+        f"VITE_API_URL={VITE_API_URL}\n"
     )
     
     with open(env_path, "w") as env_file:

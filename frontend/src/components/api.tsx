@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { AxiosError } from 'axios';
 
+const baseURL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000';
+console.log("Using API base URL:", baseURL);
 
-console.log("Using API base URL:", process.env.REACT_APP_API_URL);
+// console.log("Using API base URL:", process.env.REACT_APP_API_URL);
 
 
 export interface Note {
@@ -13,7 +15,8 @@ export interface Note {
 }
 
 export const authedApi = axios.create({
-    baseURL: process.env.RENDER_URL || 'http://127.0.0.1:5000/api',
+    // baseURL: process.env.REACT_APP_API_URL || 'http://127.0.0.1:5000/api',
+    baseURL: `${baseURL}/api`,
     withCredentials: true,
     headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -21,7 +24,8 @@ export const authedApi = axios.create({
 });
 
 export const searchApi = axios.create({
-    baseURL: process.env.RENDER_URL || 'http://127.0.0.1:5000/searches',
+    // baseURL: process.env.REACT_APP_API_URL || 'http://127.0.0.1:5000/searches',
+    baseURL: `${baseURL}/searches`,
     headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
     }
@@ -29,7 +33,8 @@ export const searchApi = axios.create({
 });
 
 export const mediaApi = axios.create({
-    baseURL: process.env.RENDER_URL || 'http://127.0.0.1:5000/media',
+    // baseURL: process.env.REACT_APP_API_URL || 'http://127.0.0.1:5000/media',
+    baseURL: `${baseURL}/media`,
     headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
     }
@@ -59,7 +64,8 @@ export const fetchNotes = async (token: string | null) => {
     }
 };
 export const authApi = axios.create({
-    baseURL: process.env.RENDER_URL || 'http://127.0.0.1:5000/auth',
+    // baseURL: process.env.REACT_APP_API_URL || 'http://127.0.0.1:5000/auth',
+    baseURL: `${baseURL}/auth`,
     withCredentials: true,
     headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
   });
