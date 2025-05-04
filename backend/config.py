@@ -44,8 +44,6 @@ try:
     redis_client = redis.Redis.from_url(
         os.getenv("REDIS_URL"),  # Should start with rediss://
         decode_responses=True,
-        ssl=True,  # Explicitly enable SSL
-        ssl_cert_reqs=None  # Disable certificate verification for now
     )
     # else:
     #     # Fallback for older Redis versions
