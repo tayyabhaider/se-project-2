@@ -37,20 +37,7 @@ users_collection = db["users"]
 summary_collection = db["summary"]
 media_collection = db["media"]
 media_fs = gridfs.GridFS(db)
-# redis_client = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=0, decode_responses=True)
-# redis_client = redis.StrictRedis.from_url(REDIS_URL, decode_responses=True)
 
-
-
-# config.py (updated Redis connection)
-
-# redis_client = redis.Redis(
-#   host='true-jawfish-31387.upstash.io',
-#   port=6379,
-#   password='AXqbAAIjcDFiOTMwZWVmNjNhNjA0NmIxOTI1NDJjOTg3MTJhYWE3M3AxMA',
-#   ssl=True,
-#   decode_responses=True
-# )
 
 try:
     redis_client = redis.Redis(
@@ -71,22 +58,3 @@ except Exception as e:
     print(f"❌ Redis connection failed: {str(e)}")
 
 
-
-# try:
-#     redis_client = redis.Redis.from_url(
-#         os.getenv("REDIS_URL"),  # Should start with rediss://
-#         decode_responses=True,
-#     )
-#     # else:
-#     #     # Fallback for older Redis versions
-#     #     redis_client = redis.Redis(
-#     #         host=os.getenv("REDIS_HOST", "localhost"),
-#     #         port=int(os.getenv("REDIS_PORT", 6379)),
-#     #         decode_responses=True
-#     #     )
-    
-#     redis_client.ping()
-#     print("Redis connection successful!")
-# except redis.ConnectionError as e:
-#     print("Redis connection failed:", str(e))
-#     redis_client = None
