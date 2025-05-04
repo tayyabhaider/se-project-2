@@ -39,33 +39,25 @@ media_collection = db["media"]
 media_fs = gridfs.GridFS(db)
 # redis_client = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=0, decode_responses=True)
 # redis_client = redis.StrictRedis.from_url(REDIS_URL, decode_responses=True)
-# Redis Connection (Upstash)
+# config.py (updated Redis connection)
 try:
     if REDIS_URL:
-        # For Upstash Redis with URL format: redis://<user>:<password>@<host>:<port>
-        redis_client = redis.StrictRedis.from_url(
+        # For Redis 4.0+ with SSL support
+        redis_client = redis.Redis.from_url(
             REDIS_URL,
-            ssl=True,
-            ssl_cert_reqs=ssl.CERT_NONE,  # Disable SSL verification if needed
+            ssl_cert_reqs=None,  # Disable certificate verification
             decode_responses=True
         )
-    elif UPSTASH_REST_TOKEN:
-        # Alternative connection using REST token
-        redis_client = redis.StrictRedis(
-            host=os.getenv("UPSTASH_REDIS_REST_URL").replace("https://", ""),
-            port=6379,
-            password=UPSTASH_REST_TOKEN,
-            ssl=True,
-            ssl_cert_reqs=ssl.CERT_NONE,
+    else:
+        # Fallback for older Redis versions
+        redis_client = redis.Redis(
+            host=os.getenv("REDIS_HOST", "localhost"),
+            port=int(os.getenv("REDIS_PORT", 6379)),
             decode_responses=True
         )
-
-    # Test Redis connection
+    
     redis_client.ping()
-    print("Successfully connected to Redis!")
+    print("Redis connection successful!")
 except redis.ConnectionError as e:
-    print("Redis connection error:", e)
-    redis_client = None  # Ensure the variable exists even if connection fails
-except Exception as e:
-    print("Redis setup error:", e)
+    print("Redis connection failed:", str(e))
     redis_client = None
