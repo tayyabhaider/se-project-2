@@ -41,20 +41,19 @@ media_fs = gridfs.GridFS(db)
 # redis_client = redis.StrictRedis.from_url(REDIS_URL, decode_responses=True)
 # config.py (updated Redis connection)
 try:
-    if REDIS_URL:
-        # For Redis 4.0+ with SSL support
-        redis_client = redis.Redis.from_url(
-            REDIS_URL,
-            ssl_cert_reqs=None,  # Disable certificate verification
-            decode_responses=True
-        )
-    else:
-        # Fallback for older Redis versions
-        redis_client = redis.Redis(
-            host=os.getenv("REDIS_HOST", "localhost"),
-            port=int(os.getenv("REDIS_PORT", 6379)),
-            decode_responses=True
-        )
+    redis_client = redis.Redis.from_url(
+        os.getenv("REDIS_URL"),  # Should start with rediss://
+        decode_responses=True,
+        ssl=True,  # Explicitly enable SSL
+        ssl_cert_reqs=None  # Disable certificate verification for now
+    )
+    # else:
+    #     # Fallback for older Redis versions
+    #     redis_client = redis.Redis(
+    #         host=os.getenv("REDIS_HOST", "localhost"),
+    #         port=int(os.getenv("REDIS_PORT", 6379)),
+    #         decode_responses=True
+    #     )
     
     redis_client.ping()
     print("Redis connection successful!")
