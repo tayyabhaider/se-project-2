@@ -208,7 +208,9 @@ const NoteEditor: React.FC = () => {
       const response = await mediaApi.post('/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${localStorage.getItem('token')}`
         },
+        withCredentials: true
       });
   
       const imageUrl = response.data.url;
